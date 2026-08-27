@@ -8,11 +8,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0B1220",
-        paper: "#F7F8FA",
-        signal: "#2657FF",
-        signalDark: "#1A3FCC",
-        accent: "#FFB020",
+        ink: "#10162B",
+        paper: "#F6F7F5",
+        signal: "#2B4EFF",
+        signalDark: "#1E3AC7",
+        pen: "#D64545",
+        penDark: "#B93636",
+        correct: "#1B8A5A",
+        marked: "#E8A33D",
         line: "#E3E6EC",
       },
       fontFamily: {
