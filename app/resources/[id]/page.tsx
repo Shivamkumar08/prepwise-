@@ -61,7 +61,7 @@ export default async function ResourceDetailPage({
         </Link>
 
         <p className="text-xs text-ink/40 mt-4">
-          {exam?.name} {subject?.name ? `· ${subject.name}` : ""}
+          {exam?.name} {subject?.name ? `- ${subject.name}` : ""}
         </p>
         <h1 className="font-display font-bold text-3xl text-ink mt-1">
           {resource.title}
@@ -92,7 +92,7 @@ export default async function ResourceDetailPage({
               </h2>
               <p className="text-paper/60 mt-2 text-sm max-w-sm mx-auto">
                 {user
-                  ? "Your account isn't premium yet. Premium purchases aren't live on the site yet — for now, reach out directly to get upgraded."
+                  ? "Your account isn't premium yet. Premium purchases aren't live on the site yet, so for now reach out directly to get upgraded."
                   : "Log in or create a free account, then reach out to get upgraded to Premium."}
               </p>
               <div className="mt-6 flex gap-3 justify-center">
