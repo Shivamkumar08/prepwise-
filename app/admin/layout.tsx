@@ -55,12 +55,12 @@ export default async function AdminLayout({
           >
             Content
           </Link>
-          <p className="px-3 pt-4 text-xs text-ink/30 uppercase tracking-widest">
-            Coming in Phase 8
-          </p>
-          <span className="block px-3 py-2 rounded-lg text-ink/30 font-medium cursor-not-allowed">
+          <Link
+            href="/admin/mock-tests"
+            className="block px-3 py-2 rounded-lg text-ink/70 hover:bg-paper hover:text-ink font-medium"
+          >
             Mock Tests
-          </span>
+          </Link>
         </nav>
         <div className="px-3 py-4 border-t border-line">
           <LogoutButton />
