@@ -49,12 +49,15 @@ export default async function AdminLayout({
           >
             Users
           </Link>
-          <p className="px-3 pt-4 text-xs text-ink/30 uppercase tracking-widest">
-            Coming in Phase 6
-          </p>
-          <span className="block px-3 py-2 rounded-lg text-ink/30 font-medium cursor-not-allowed">
+          <Link
+            href="/admin/content"
+            className="block px-3 py-2 rounded-lg text-ink/70 hover:bg-paper hover:text-ink font-medium"
+          >
             Content
-          </span>
+          </Link>
+          <p className="px-3 pt-4 text-xs text-ink/30 uppercase tracking-widest">
+            Coming in Phase 8
+          </p>
           <span className="block px-3 py-2 rounded-lg text-ink/30 font-medium cursor-not-allowed">
             Mock Tests
           </span>
