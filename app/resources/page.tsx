@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function ResourcesIndexPage() {
@@ -11,11 +12,9 @@ export default async function ResourcesIndexPage() {
 
   return (
     <main className="min-h-screen bg-paper">
+      <SiteHeader />
       <div className="max-w-4xl mx-auto px-6 py-16">
-        <Link href="/" className="font-display font-extrabold text-ink">
-          PrepWise
-        </Link>
-        <h1 className="font-display font-bold text-3xl text-ink mt-6">
+        <h1 className="font-display font-bold text-3xl text-ink mt-2">
           All resources
         </h1>
         <p className="text-ink/60 mt-2">
