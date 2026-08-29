@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
 
 const exams = [
   { code: "EX-01", name: "JEE Main", tag: "Engineering", href: "/exams/jee-main" },
@@ -35,29 +36,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-paper">
       {/* NAV */}
-      <header className="border-b border-line">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-display font-extrabold text-lg text-ink tracking-tight">
-            PrepWise
-          </span>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-ink/70">
-            <Link href="/exams" className="hover:text-ink">Exams</Link>
-            <Link href="/resources" className="hover:text-ink">Resources</Link>
-            <Link href="/mock-tests" className="hover:text-ink">Mock Tests</Link>
-          </nav>
-          <div className="flex items-center gap-3 text-sm font-medium">
-            <Link href="/login" className="text-ink/70 hover:text-ink hidden sm:inline">
-              Log in
-            </Link>
-            <Link
-              href="/signup"
-              className="bg-ink text-paper px-4 py-2 rounded-lg hover:bg-ink/90 transition-colors"
-            >
-              Get free access
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-20 grid md:grid-cols-2 gap-12 items-center">
