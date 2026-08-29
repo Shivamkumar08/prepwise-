@@ -36,8 +36,8 @@ export default function ResourceList({ resources }: { resources: Resource[] }) {
   }
 
   return (
-    <div className="mt-8 border border-line bg-white rounded-xl overflow-hidden">
-      <table className="w-full text-sm">
+    <div className="mt-8 border border-line bg-white rounded-xl overflow-x-auto">
+      <table className="w-full min-w-[640px] text-sm">
         <thead>
           <tr className="border-b border-line text-left text-ink/40 text-xs uppercase tracking-widest">
             <th className="px-5 py-3">Title</th>
