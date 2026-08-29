@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "@/components/LogoutButton";
 
@@ -30,7 +31,9 @@ export default async function DashboardPage() {
     .limit(20);
 
   return (
-    <main className="min-h-screen bg-paper px-6 py-16">
+    <main className="min-h-screen bg-paper">
+      <SiteHeader />
+      <div className="px-6 py-16">
       <div className="max-w-2xl mx-auto">
         <div className="text-center">
           <h1 className="font-display font-bold text-2xl text-ink">Welcome back</h1>
@@ -94,6 +97,7 @@ export default async function DashboardPage() {
             );
           })}
         </div>
+      </div>
       </div>
     </main>
   );
