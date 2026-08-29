@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 import StartTestButton from "@/components/StartTestButton";
 
@@ -37,6 +38,7 @@ export default async function MockTestDetailPage({
 
   return (
     <main className="min-h-screen bg-paper">
+      <SiteHeader />
       <div className="max-w-2xl mx-auto px-6 py-16">
         <Link href="/mock-tests" className="text-sm text-signal font-medium">
           &larr; All tests
