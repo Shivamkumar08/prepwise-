@@ -1,5 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 
 type ReviewRow = {
@@ -60,6 +61,7 @@ export default async function ResultPage({
 
   return (
     <main className="min-h-screen bg-paper">
+      <SiteHeader />
       <div className="max-w-2xl mx-auto px-6 py-16">
         <p className="text-xs text-ink/40 uppercase tracking-widest text-center">{test?.title}</p>
         <h1 className="font-display font-extrabold text-4xl text-ink mt-2 text-center">
