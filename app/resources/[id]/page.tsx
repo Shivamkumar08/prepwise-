@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function ResourceDetailPage({
@@ -52,6 +53,7 @@ export default async function ResourceDetailPage({
 
   return (
     <main className="min-h-screen bg-paper">
+      <SiteHeader />
       <div className="max-w-3xl mx-auto px-6 py-16">
         <Link
           href={exam?.slug ? `/exams/${exam.slug}` : "/resources"}
