@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 
 const CONTENT_TYPE_LABELS: Record<string, string> = {
@@ -36,6 +37,7 @@ export default async function ExamPage({
 
   return (
     <main className="min-h-screen bg-paper">
+      <SiteHeader />
       <div className="max-w-4xl mx-auto px-6 py-16">
         <Link href="/exams" className="text-sm text-signal font-medium">
           &larr; All exams
