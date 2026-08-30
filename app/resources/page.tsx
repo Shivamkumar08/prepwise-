@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = {
+  title: "All Resources — Notes, PYQs & Formula Sheets",
+  description:
+    "Free and premium short notes, formula sheets, PYQs and study material across every exam on PrepWise.",
+};
 
 export default async function ResourcesIndexPage() {
   const supabase = await createClient();
