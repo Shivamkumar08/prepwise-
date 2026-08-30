@@ -1,7 +1,34 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const supabase = await createClient();
+  const { data: resource } = await supabase
+    .from("resources")
+    .select("title, description, exams(name), subjects(name)")
+    .eq("id", id)
+    .single();
+
+  if (!resource) return { title: "Resource not found" };
+
+  const exam: any = Array.isArray(resource.exams) ? resource.exams[0] : resource.exams;
+  const subject: any = Array.isArray(resource.subjects) ? resource.subjects[0] : resource.subjects;
+
+  return {
+    title: resource.title,
+    description:
+      resource.description ||
+      `${resource.title} — ${exam?.name ?? ""} ${subject?.name ?? ""} on PrepWise.`,
+  };
+}
 
 export default async function ResourceDetailPage({
   params,
