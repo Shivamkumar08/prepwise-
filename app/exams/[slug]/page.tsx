@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 
@@ -11,6 +12,29 @@ const CONTENT_TYPE_LABELS: Record<string, string> = {
   study_material: "Study Material",
   question_bank: "Question Bank",
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+  const { data: exam } = await supabase
+    .from("exams")
+    .select("name, description")
+    .eq("slug", slug)
+    .single();
+
+  if (!exam) return { title: "Exam not found" };
+
+  return {
+    title: `${exam.name} Notes, PYQs & Mock Tests`,
+    description:
+      exam.description ||
+      `Free and premium ${exam.name} notes, formula sheets, PYQs and mock tests on PrepWise.`,
+  };
+}
 
 export default async function ExamPage({
   params,
