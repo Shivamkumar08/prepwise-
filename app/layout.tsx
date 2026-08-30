@@ -14,10 +14,21 @@ const mono = IBM_Plex_Mono({
   variable: "--font-body",
 });
 
+const SITE_URL = "https://prepwise-drab.vercel.app";
+
 export const metadata: Metadata = {
-  title: "PrepWise — JEE, NEET & CUET Preparation",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "PrepWise — JEE, NEET & CUET Preparation",
+    template: "%s | PrepWise",
+  },
   description:
     "Notes, PYQs, formula sheets and timed mock tests for Class 11, Class 12, JEE Main, JEE Advanced, NEET and CUET.",
+  openGraph: {
+    siteName: "PrepWise",
+    type: "website",
+    locale: "en_IN",
+  },
 };
 
 export default function RootLayout({
