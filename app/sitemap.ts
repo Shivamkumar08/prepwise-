@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { createPublicClient } from "@/lib/supabase/public";
 
-const SITE_URL = "https://prepwise-drab.vercel.app";
+const SITE_URL = "https://prep-wize.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createPublicClient();
