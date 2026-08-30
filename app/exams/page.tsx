@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
+
+export const metadata: Metadata = {
+  title: "All Exams",
+  description:
+    "Browse notes, PYQs, formula sheets and mock tests for JEE Main, JEE Advanced, NEET, CUET, Class 11 and Class 12.",
+};
 
 export default async function ExamsIndexPage() {
   const supabase = await createClient();
