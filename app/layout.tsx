@@ -14,7 +14,7 @@ const mono = IBM_Plex_Mono({
   variable: "--font-body",
 });
 
-const SITE_URL = "https://prepwise-drab.vercel.app";
+const SITE_URL = "https://prep-wize.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
