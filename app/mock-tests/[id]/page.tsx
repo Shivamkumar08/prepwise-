@@ -1,8 +1,34 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import { createClient } from "@/lib/supabase/server";
 import StartTestButton from "@/components/StartTestButton";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const supabase = await createClient();
+  const { data: test } = await supabase
+    .from("mock_tests")
+    .select("title, duration_minutes, total_marks, exams(name)")
+    .eq("id", id)
+    .single();
+
+  if (!test) return { title: "Test not found" };
+
+  const exam: any = Array.isArray(test.exams) ? test.exams[0] : test.exams;
+
+  return {
+    title: test.title,
+    description: `${test.title} — a timed, ${test.duration_minutes}-minute ${
+      exam?.name ?? ""
+    } mock test worth ${test.total_marks} marks, on PrepWise.`,
+  };
+}
 
 export default async function MockTestDetailPage({
   params,
