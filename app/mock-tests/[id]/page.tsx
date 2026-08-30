@@ -40,9 +40,7 @@ export default async function MockTestDetailPage({
 
   const { data: test } = await supabase
     .from("mock_tests")
-    .select(
-      "id, title, duration_minutes, total_marks, access, published, exams(name), mock_test_questions(count)"
-    )
+    .select("id, title, duration_minutes, total_marks, access, published, exams(name)")
     .eq("id", id)
     .single();
 
@@ -59,7 +57,12 @@ export default async function MockTestDetailPage({
   }
 
   const hasAccess = test.access === "free" || role === "premium_user" || role === "admin";
-  const qCount = (test as any).mock_test_questions?.[0]?.count ?? 0;
+
+  const { data: qCountData } = await supabase.rpc("get_test_question_count", {
+    p_test_id: id,
+  });
+  const qCount = qCountData ?? 0;
+
   const exam: any = Array.isArray((test as any).exams) ? (test as any).exams[0] : (test as any).exams;
 
   return (
