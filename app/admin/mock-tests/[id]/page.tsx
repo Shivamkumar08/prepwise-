@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import AddQuestionForm from "@/components/admin/AddQuestionForm";
+import BulkAddQuestions from "@/components/admin/BulkAddQuestions";
 import QuestionList from "@/components/admin/QuestionList";
 
 export default async function ManageMockTestPage({
@@ -43,6 +44,10 @@ export default async function ManageMockTestPage({
 
       <div className="mt-8">
         <AddQuestionForm mockTestId={test.id} nextOrder={(links ?? []).length} />
+      </div>
+
+      <div className="mt-4">
+        <BulkAddQuestions mockTestId={test.id} nextOrder={(links ?? []).length} />
       </div>
 
       <h2 className="font-display font-bold text-lg text-ink mt-12">
