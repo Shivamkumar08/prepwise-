@@ -203,3 +203,67 @@ export default function TestRunner({
 
               <div className="mt-8 flex justify-between">
                 <button
+                  onClick={() => setCurrent((c) => Math.max(0, c - 1))}
+                  disabled={current === 0}
+                  className="text-sm font-medium text-ink/70 disabled:opacity-30"
+                >
+                  &larr; Previous
+                </button>
+                {current === questions.length - 1 ? (
+                  <button
+                    onClick={handleSubmit}
+                    disabled={submitting}
+                    className="bg-pen text-white px-6 py-2.5 rounded-lg font-medium hover:bg-penDark transition-colors disabled:opacity-60"
+                  >
+                    {submitting ? "Submitting…" : "Submit Test"}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setCurrent((c) => Math.min(questions.length - 1, c + 1))}
+                    className="text-sm font-medium text-signal"
+                  >
+                    Next &rarr;
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </main>
+
+        <aside className="order-first md:order-last md:w-56 border-b md:border-b-0 md:border-l border-line p-4 md:p-6">
+          <p className="text-xs text-ink/40 uppercase tracking-widest mb-3">Questions</p>
+          <div className="flex md:grid md:grid-cols-5 gap-2 overflow-x-auto md:overflow-visible pb-1">
+            {questions.map((qq, i) => {
+              const answered = !!answers[qq.question_id];
+              const isMarked = marked.has(qq.question_id);
+              return (
+                <button
+                  key={qq.question_id}
+                  onClick={() => setCurrent(i)}
+                  className={`w-10 h-10 md:w-9 md:h-9 flex-shrink-0 rounded-lg text-xs font-medium flex items-center justify-center border ${
+                    i === current
+                      ? "border-ink"
+                      : isMarked
+                      ? "bg-marked/20 border-marked text-marked"
+                      : answered
+                      ? "bg-correct/20 border-correct text-correct"
+                      : "border-line text-ink/50"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              );
+            })}
+          </div>
+          <button
+            onClick={handleSubmit}
+            disabled={submitting}
+            className="mt-4 md:mt-6 w-full bg-pen text-white py-2.5 rounded-lg text-sm font-medium hover:bg-penDark transition-colors disabled:opacity-60"
+          >
+            {submitting ? "Submitting…" : "Submit Test"}
+          </button>
+        </aside>
+      </div>
+    </div>
+  );
+}
