@@ -7,6 +7,7 @@ type ReviewRow = {
   question_id: string;
   sort_order: number;
   question_text: string;
+  image_path: string | null;
   option_a: string;
   option_b: string;
   option_c: string;
@@ -116,6 +117,13 @@ export default async function ResultPage({
             return (
               <div key={row.question_id} className={`border-l-4 ${statusColor} bg-white rounded-r-xl p-5`}>
                 <p className="text-xs text-ink/40">Question {i + 1}</p>
+                {row.image_path && (
+                  <img
+                    src={supabase.storage.from("question-images").getPublicUrl(row.image_path).data.publicUrl}
+                    alt="Question diagram"
+                    className="max-w-full rounded-lg border border-line mt-2 mb-3"
+                  />
+                )}
                 <p className="text-ink font-medium mt-1">{row.question_text}</p>
 
                 <div className="mt-4 space-y-2">
@@ -158,4 +166,3 @@ export default async function ResultPage({
     </main>
   );
 }
-// jjj
