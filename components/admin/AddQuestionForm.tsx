@@ -21,6 +21,7 @@ export default function AddQuestionForm({
   const [explanation, setExplanation] = useState("");
   const [marks, setMarks] = useState(4);
   const [negativeMarks, setNegativeMarks] = useState(1);
+  const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -39,10 +40,23 @@ export default function AddQuestionForm({
     const supabase = createClient();
 
     try {
+      let imagePath: string | null = null;
+
+      if (image) {
+        const ext = image.name.split(".").pop();
+        const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+        const { error: uploadError } = await supabase.storage
+          .from("question-images")
+          .upload(path, image);
+        if (uploadError) throw uploadError;
+        imagePath = path;
+      }
+
       const { data: question, error: qError } = await supabase
         .from("questions")
         .insert({
           question_text: questionText,
+          image_path: imagePath,
           option_a: optionA,
           option_b: optionB,
           option_c: optionC,
@@ -73,6 +87,9 @@ export default function AddQuestionForm({
       setOptionD("");
       setExplanation("");
       setCorrect("a");
+      setImage(null);
+      const fileInput = document.getElementById("question-image-input") as HTMLInputElement | null;
+      if (fileInput) fileInput.value = "";
       router.refresh();
     } catch (err: any) {
       setError(err.message || "Something went wrong.");
@@ -90,6 +107,19 @@ export default function AddQuestionForm({
           onChange={(e) => setQuestionText(e.target.value)}
           rows={3}
           className="mt-1 w-full border border-line rounded-lg px-3 py-2 bg-white text-ink"
+        />
+      </div>
+
+      <div>
+        <label className="text-sm font-medium text-ink/70">
+          Diagram / Image <span className="text-ink/40">(optional)</span>
+        </label>
+        <input
+          id="question-image-input"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files?.[0] ?? null)}
+          className="mt-1 w-full text-sm text-ink/70"
         />
       </div>
 
